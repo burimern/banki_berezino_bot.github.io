@@ -13,7 +13,7 @@ body {
 .inner {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
-	grid-template-rows: 150px 150px 150px;
+	grid-template-rows: 200px 200px 200px;
 }
 
 .img {
@@ -26,7 +26,7 @@ body {
 
 .btn {
 	display: inline-block;
-	padding: 10px 20px;
+	padding: 5px 10px;
 	border: none;
 	background: rgb(89, 76, 240);
 	border-radius: 10px;
