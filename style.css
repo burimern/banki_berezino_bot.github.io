@@ -4,22 +4,28 @@ body {
 	font-size: 18px;
 	color: var(--tg-theme-text-color);
 	background: var(--tg-theme-bg-color);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
 }
 
 .container {
 	max-width: 390px;
-	margin: 0 auto; /* Центрирование контейнера */
+	width: 100%;
+	padding: 20px;
+	box-sizing: border-box;
 }
 
 .inner {
 	display: grid;
-	grid-template-columns: 1fr 1fr;
-	grid-template-rows: 200px 200px 200px;
-	gap: 10px; /* Расстояние между элементами */
+	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+	grid-gap: 20px;
+	justify-items: center;
 }
 
 .img {
-	width: 100px; /* Размер изображения по умолчанию */
+	width: 100px; /* Размер изображения */
 }
 
 .item {
@@ -46,37 +52,29 @@ body {
 	text-align: center;
 }
 
-/* Медиазапросы для планшетов и мобильных устройств */
+/* Медиазапросы для мобильных устройств */
 @media (max-width: 768px) {
-	.inner {
-		grid-template-columns: 1fr; /* Один столбец для планшетов */
-		grid-template-rows: auto;
-	}
-
 	.img {
-		width: 80px; /* Уменьшение размера изображений для планшетов */
+		width: 80px; /* Уменьшение размера изображений для мобильных устройств */
 	}
 
 	.btn {
-		width: auto;
+		padding: 8px 16px; /* Уменьшение отступов для кнопок */
 		font-size: 16px; /* Уменьшение размера шрифта для кнопок */
 	}
 }
 
 @media (max-width: 480px) {
-	body {
-		font-size: 16px; /* Уменьшение основного размера шрифта для мобильных устройств */
-	}
-
 	.img {
-		width: 60px; /* Уменьшение размера изображений для мобильных устройств */
+		width: 60px; /* Уменьшение размера изображений для маленьких мобильных устройств */
 	}
 
 	.btn {
-		padding: 8px 16px; /* Уменьшение отступов для кнопок */
+		padding: 6px 12px; /* Еще большее уменьшение отступов для кнопок */
 		font-size: 14px; /* Уменьшение размера шрифта для кнопок */
 	}
 }
+
 
 
 
