@@ -13,7 +13,7 @@ body {
 .inner {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
-	grid-template-rows: 200px 200px 200px;
+	grid-template-rows: 150px 150px 150px;
 }
 
 .img {
@@ -29,7 +29,7 @@ body {
 	padding: 10px 20px;
 	border: none;
 	background: rgb(89, 76, 240);
-	border-radius: 5px;
+	border-radius: 10px;
 	color: #fff;
 	text-transform: uppercase;
 	font-weight: 700;
