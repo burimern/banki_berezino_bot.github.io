@@ -8,16 +8,18 @@ body {
 
 .container {
 	max-width: 390px;
+	margin: 0 auto; /* Центрирование контейнера */
 }
 
 .inner {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	grid-template-rows: 200px 200px 200px;
+	gap: 10px; /* Расстояние между элементами */
 }
 
 .img {
-	width: 150px;
+	width: 100px; /* Размер изображения по умолчанию */
 }
 
 .item {
@@ -33,7 +35,6 @@ body {
 	color: #fff;
 	text-transform: uppercase;
 	font-weight: 700;
-
 	transition: background .2s linear;
 }
 
@@ -45,7 +46,37 @@ body {
 	text-align: center;
 }
 
+/* Медиазапросы для планшетов и мобильных устройств */
+@media (max-width: 768px) {
+	.inner {
+		grid-template-columns: 1fr; /* Один столбец для планшетов */
+		grid-template-rows: auto;
+	}
 
+	.img {
+		width: 80px; /* Уменьшение размера изображений для планшетов */
+	}
+
+	.btn {
+		width: auto;
+		font-size: 16px; /* Уменьшение размера шрифта для кнопок */
+	}
+}
+
+@media (max-width: 480px) {
+	body {
+		font-size: 16px; /* Уменьшение основного размера шрифта для мобильных устройств */
+	}
+
+	.img {
+		width: 60px; /* Уменьшение размера изображений для мобильных устройств */
+	}
+
+	.btn {
+		padding: 8px 16px; /* Уменьшение отступов для кнопок */
+		font-size: 14px; /* Уменьшение размера шрифта для кнопок */
+	}
+}
 
 
 
