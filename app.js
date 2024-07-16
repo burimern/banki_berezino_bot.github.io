@@ -8,6 +8,8 @@ tg.MainButton.color = '#2cab37';
 let items = [];
 
 let buttons = document.querySelectorAll('.btn');
+let timeInput = document.getElementById('time');
+let placeInput = document.getElementById('place');
 
 function toggleItem(button, itemNumber) {
     if (items.includes(itemNumber)) {
@@ -34,7 +36,21 @@ buttons.forEach((button, index) => {
 });
 
 Telegram.WebApp.onEvent("mainButtonClicked", function() {
-    tg.sendData(items.join(","));
+    let selectedItems = items.join(", ");
+    let time = timeInput.value;
+    let place = placeInput.value;
+
+    if (!time || !place) {
+        alert('Пожалуйста, введите время и место.');
+        return;
+    }
+
+    let message = `
+1. Выбранные товары: ${selectedItems}
+2. Время: ${time}
+3. Место: ${place}
+    `;
+    tg.sendData(message.trim());
 });
 
 let usercard = document.getElementById("usercard");
@@ -44,6 +60,7 @@ let p = document.createElement("p");
 p.innerText = `${tg.initDataUnsafe.user.first_name} ${tg.initDataUnsafe.user.last_name}`;
 
 usercard.appendChild(p);
+
 
 
 
