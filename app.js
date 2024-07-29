@@ -8,8 +8,6 @@ tg.MainButton.color = '#2cab37';
 let items = [];
 
 let buttons = document.querySelectorAll('.btn');
-let timeInput = document.getElementById('time');
-let placeInput = document.getElementById('place');
 
 function toggleItem(button, itemNumber) {
     if (items.includes(itemNumber)) {
@@ -31,26 +29,33 @@ function updateMainButton() {
     }
 }
 
+// переходы на страницы
+function redirectToHot() {
+    window.location.href = 'hot.html' ;
+}
+function redirectToHotDot(){
+    window.location.href = 'hot-dot.html';
+}
+function redirectToPodonki(){
+    window.location.href = 'podonki.html';
+}
+function redirectToPodonkiLastHap(){
+    window.location.href = 'podonki-last-hap.html';
+}
+function redirectToPodonkixAnarchi(){
+    window.location.href = 'podonki-x-anarchi.html';
+}
+function redirectToRasxodniki(){
+    window.location.href = 'rasxodniki.html';
+}
+
+
 buttons.forEach((button, index) => {
     button.addEventListener('click', () => toggleItem(button, (index + 1).toString()));
 });
 
 Telegram.WebApp.onEvent("mainButtonClicked", function() {
-    let selectedItems = items.join(", ");
-    let time = timeInput.value;
-    let place = placeInput.value;
-
-    if (!time || !place) {
-        alert('Пожалуйста, введите время и место.');
-        return;
-    }
-
-    let message = `
-1. Выбранные товары: ${selectedItems}
-2. Время: ${time}
-3. Место: ${place}
-    `;
-    tg.sendData(message.trim());
+    tg.sendData(items.join(","));
 });
 
 let usercard = document.getElementById("usercard");
