@@ -1,9 +1,25 @@
+let tg = window.Telegram.WebApp;
+
+tg.expand();
+
+tg.MainButton.textColor = '#FFFFFF';
+tg.MainButton.color = '#2cab37';
+
 let items = [];
 
-// Инициализация Telegram Web App
-const tg = window.Telegram.WebApp;
+let buttons = document.querySelectorAll('.btn');
 
-// Обновление основной кнопки
+function toggleItem(button, itemNumber) {
+    if (items.includes(itemNumber)) {
+        items = items.filter(item => item !== itemNumber);
+        button.classList.remove("selected");
+    } else {
+        items.push(itemNumber);
+        button.classList.add("selected");
+    }
+    updateMainButton();
+}
+
 function updateMainButton() {
     if (items.length === 0) {
         tg.MainButton.hide();
@@ -13,62 +29,49 @@ function updateMainButton() {
     }
 }
 
-// Переход к категории товаров
-function redirectToCategory(category) {
-    window.location.href = `${category}.html`;
+// переходы на страницы
+function redirectToHot() {
+    window.location.href = 'hot.html' ;
+}
+function redirectToHotDot(){
+    window.location.href = 'hot-dot.html';
+}
+function redirectToPodonki(){
+    window.location.href = 'podonki.html';
+}
+function redirectToPodonkiLastHap(){
+    window.location.href = 'podonki-last-hap.html';
+}
+function redirectToPodonkixAnarchi(){
+    window.location.href = 'podonki-x-anarchi.html';
+}
+function redirectToRasxodniki(){
+    window.location.href = 'rasxodniki.html';
+}
+function redirectToIndex(){
+    window.location.href = 'index.html';
 }
 
-// Функция для добавления товара
-function addItem(item) {
-    items.push(item);
-    localStorage.setItem('selectedItems', JSON.stringify(items));
-    updateMainButton();
-    alert(`${item} добавлен в заказ`);
-}
 
-// Отправка заказа
-tg.MainButton.onClick(() => {
-    const selectedItems = JSON.parse(localStorage.getItem('selectedItems')) || [];
-    if (selectedItems.length === 0) {
-        alert('Вы не выбрали ни одного товара');
-        return;
-    }
 
-    const message = `Ваш заказ: ${selectedItems.join(', ')}`;
 
-    // Отправка данных в Telegram бота
-    fetch('https://api.telegram.org/bot<YOUR_BOT_TOKEN>/sendMessage', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            chat_id: '<RECIPIENT_CHAT_ID>',
-            text: message
-        })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.ok) {
-            alert('Заказ отправлен успешно');
-            localStorage.removeItem('selectedItems');
-            items = [];
-            updateMainButton();
-        } else {
-            alert('Ошибка при отправке заказа');
-        }
-    })
-    .catch(error => {
-        console.error('Ошибка:', error);
-        alert('Ошибка при отправке заказа');
-    });
+
+buttons.forEach((button, index) => {
+    button.addEventListener('click', () => toggleItem(button, (index + 1).toString()));
 });
 
-// Обновление кнопки при загрузке страницы
-window.addEventListener('load', () => {
-    items = JSON.parse(localStorage.getItem('selectedItems')) || [];
-    updateMainButton();
+Telegram.WebApp.onEvent("mainButtonClicked", function() {
+    tg.sendData(items.join(","));
 });
+
+let usercard = document.getElementById("usercard");
+
+let p = document.createElement("p");
+
+p.innerText = `${tg.initDataUnsafe.user.first_name} ${tg.initDataUnsafe.user.last_name}`;
+
+usercard.appendChild(p);
+
 
 
 
