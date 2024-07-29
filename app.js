@@ -1,76 +1,54 @@
-let tg = window.Telegram.WebApp;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css">
+	<title>Наличие</title>
+</head>
+<body>
+	<button class="back-btn" onclick="redirectToIndex()">←</button>
+	<div class="container">
+		<div class="inner">
+			<div class="item">
+				<img src="1.png" alt="" class="img">
+				<button class="btn" id="btn1">1hot</button>
+			</div>
+			<div class="item">
+				<img src="1.png" alt="" class="img">
+				<button class="btn" id="btn2">2</button>
+			</div>
+			<div class="item">
+				<img src="1.png" alt="" class="img">
+				<button class="btn" id="btn3">3</button>
+			</div>
+			<div class="item">
+				<img src="1.png" alt="" class="img">
+				<button class="btn" id="btn4">4</button>
+			</div>
+			<div class="item">
+				<img src="1.png" alt="" class="img">
+				<button class="btn" id="btn5">5</button>
+			</div>
+			<div class="item">
+				<img src="1.png" alt="" class="img">
+				<button class="btn" id="btn6">6</button>
+			</div>
+		</div>
+	</div>
+	<div class="usercard" id="usercard">
+		
+	</div>
 
-tg.expand();
-
-tg.MainButton.textColor = '#FFFFFF';
-tg.MainButton.color = '#2cab37';
-
-let items = [];
-
-let buttons = document.querySelectorAll('.btn');
-
-function toggleItem(button, itemNumber) {
-    if (items.includes(itemNumber)) {
-        items = items.filter(item => item !== itemNumber);
-        button.classList.remove("selected");
-    } else {
-        items.push(itemNumber);
-        button.classList.add("selected");
-    }
-    updateMainButton();
-}
-
-function updateMainButton() {
-    if (items.length === 0) {
-        tg.MainButton.hide();
-    } else {
-        tg.MainButton.setText(`Вы выбрали товар(ы): ${items.join(", ")}`);
-        tg.MainButton.show();
-    }
-}
-
-// переходы на страницы
-function redirectToHot() {
-    window.location.href = 'hot.html' ;
-}
-function redirectToHotDot(){
-    window.location.href = 'hot-dot.html';
-}
-function redirectToPodonki(){
-    window.location.href = 'podonki.html';
-}
-function redirectToPodonkiLastHap(){
-    window.location.href = 'podonki-last-hap.html';
-}
-function redirectToPodonkixAnarchi(){
-    window.location.href = 'podonki-x-anarchi.html';
-}
-function redirectToRasxodniki(){
-    window.location.href = 'rasxodniki.html';
-}
-function redirectToIndex(){
-    window.location.href = 'index.html';
-}
-
-
-
-
-
-buttons.forEach((button, index) => {
-    button.addEventListener('click', () => toggleItem(button, (index + 1).toString()));
-});
-
-Telegram.WebApp.onEvent("mainButtonClicked", function() {
-    tg.sendData(items.join(","));
-});
-
-let usercard = document.getElementById("usercard");
-
-let p = document.createElement("p");
-
-p.innerText = `${tg.initDataUnsafe.user.first_name} ${tg.initDataUnsafe.user.last_name}`;
-
-usercard.appendChild(p);
+	<script src="https://telegram.org/js/telegram-web-app.js"></script>
+	<script src="app.js"></script>
+	<script>
+		function redirectToIndex(){
+			window.location.href = 'index.html';
+		}
+	</script>
+</body>
+</html>
 
 
 
